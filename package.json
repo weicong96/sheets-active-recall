@@ -1,0 +1,25 @@
+{
+  "name": "sheets-active-recall",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weicong96/sheets-active-recall.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/weicong96/sheets-active-recall/issues"
+  },
+  "homepage": "https://github.com/weicong96/sheets-active-recall#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "googleapis": "^27.0.0"
+  }
+}

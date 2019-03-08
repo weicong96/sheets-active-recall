@@ -1,0 +1,12 @@
+.questions *{
+    text-align: left;
+}
+.questions{
+    text-align: right;
+}
+.questions input[type='button']{
+  font-size: calc(10px + 3vmin);
+}
+h3{
+  text-align: left;  
+}

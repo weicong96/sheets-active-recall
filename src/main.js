@@ -8,15 +8,14 @@ const app = express();
 const {
     getToken
 } = require('./api/google');
-
+const uploader = require('./routes/upload');
 app.use(cors());
 app.get('/', (req, res)=>{
     return res.json({status: "OK"})
 })
+app.get('/readFile/:fileName', uploader.readFile)
 app.post('/upload', upload.single('file'), (req, res)=>{
-    console.log(req.file);
-    console.log("uploading")
-    return res.send("OK")
+    return res.send({fileName: req.file.filename})
 })
 app.get('/token', (req, res)=>{
     getToken().then((token)=>{

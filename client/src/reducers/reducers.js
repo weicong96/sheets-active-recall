@@ -1,17 +1,27 @@
 import { combineReducers } from 'redux'
 import {
-    UPLOAD_FILE,
+    READ_FILE,
     UPLOAD_FILE_FULFILLED,
     UPLOAD_FILE_REJECTED
 } from './actions';
-const initialState = {
-    loading: false
-};
-function uploadFile(state=initialState, action){
+function readFile(state={}, action){
+    switch(action.type){
+        case READ_FILE:
+            console.log(action);
+            return state;
+        default:
+            return state;
+    }
+}
+function uploadFile(state={}, action){
     switch(action.type){
         case UPLOAD_FILE_FULFILLED:
+            return {
+                ...state,
+                fileName: action.payload.data.fileName
+            }
         case UPLOAD_FILE_REJECTED:
-            return {...state, loading: false}
+            return {...state}
         default: 
             return state;
     }

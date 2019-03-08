@@ -3,29 +3,41 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import {uploadFile} from '../../reducers/actions';
 class Uploader extends Component {
+  constructor(props){
+    super(props);
+    this.state = { file: null};  
+  }
   onUpload(e){
-    this.props.onUpload(e.target.files[0]);
+    this.setState({
+      file: e.target.files[0]
+    })
+  }
+  onSubmit(e){
+    this.props.onUpload(this.state.file).then((res)=>{
+      this.props.onUploaded(res.action.payload.data);
+    });
   }
   render() {
     return (
       <div>
           <input type='file' onChange={this.onUpload.bind(this)}/>
-          <div>{this.props.uploaded ? "Hello" : "no"}</div>
+          <p>{this.state.file != null ? "File Uploaded: "+this.state.file.name : ""}</p>
+          <input type='button' value='Process' onClick={this.onSubmit.bind(this)}/>
       </div>
     );
   }
 }
 Uploader.propTypes = {
-  uploaded: PropTypes.bool,
-  onUpload: PropTypes.func.isRequired
+  onUpload: PropTypes.func.isRequired,
+  onUploaded: PropTypes.func.isRequired
 }
 const mapStateToProps=(state)=>{
-  return {...state.uploadFile}
+  return {}
 }
-const mapDispatchToProps= (dispatch)=>{
-  
+const mapDispatchToProps= (dispatch, ownProps)=>{
   return {
+    ...ownProps,
     onUpload: (file)=> dispatch(uploadFile(file)) 
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Uploader);
+export default connect(mapStateToProps,mapDispatchToProps)(Uploader);

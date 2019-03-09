@@ -11,15 +11,3 @@ export function readFile(fileName){
         payload: axios.get(`${API_ADDR}/read/${fileName}`)
     }
 }
-export function uploadFile(file){
-    var formData = new FormData();
-    formData.append('file', file);
-    return {
-        type: UPLOAD_FILE,
-        payload: axios.post(`${API_ADDR}/upload`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-    }
-}

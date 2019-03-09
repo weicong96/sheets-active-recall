@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import {uploadFile} from '../../reducers/actions';
+import axios from 'axios';
+
 class Uploader extends Component {
   constructor(props){
     super(props);
@@ -13,8 +14,14 @@ class Uploader extends Component {
     })
   }
   onSubmit(e){
-    this.props.onUpload(this.state.file).then((res)=>{
-      this.props.onUploaded(res.action.payload.data);
+    var formData = new FormData();
+    formData.append('file', this.state.file);
+    axios.post(`http://localhost:8080/upload`, formData, {
+      headers: {
+          'Content-Type': 'multipart/form-data'
+      }
+    }).then((res)=>{
+      this.props.onUploaded(res.data);
     });
   }
   render() {
@@ -28,7 +35,6 @@ class Uploader extends Component {
   }
 }
 Uploader.propTypes = {
-  onUpload: PropTypes.func.isRequired,
   onUploaded: PropTypes.func.isRequired
 }
 const mapStateToProps=(state)=>{
@@ -37,7 +43,6 @@ const mapStateToProps=(state)=>{
 const mapDispatchToProps= (dispatch, ownProps)=>{
   return {
     ...ownProps,
-    onUpload: (file)=> dispatch(uploadFile(file)) 
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Uploader);

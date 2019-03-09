@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import './App.css';
 class App extends Component {
   upload(details){
-    this.props.history.push('/reader/'+details.fileName);
+    this.props.history.push('/reader/'+details.fileId);
   }
   render() {
     return (

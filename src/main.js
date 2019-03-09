@@ -15,7 +15,10 @@ app.get('/', (req, res)=>{
 })
 app.get('/readFile/:fileName', uploader.readFile)
 app.post('/upload', upload.single('file'), (req, res)=>{
-    return res.send({fileName: req.file.filename})
+    return res.send({
+        fileName: req.file.originalname,
+        fileId: req.file.filename
+    })
 })
 app.get('/token', (req, res)=>{
     getToken().then((token)=>{

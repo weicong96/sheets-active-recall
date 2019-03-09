@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "./reader.css";
+import { connect } from 'react-redux';
 class Reader extends Component{
     constructor(props){
         super(props);
@@ -24,6 +25,16 @@ class Reader extends Component{
         )
     }
 }
+Reader.propTypes={
+    fileData: PropTypes.object
+}
 
+export default connect(()=>{
+   return {
+        fileData: {}
+   } 
+}, (dispatch)=>{
+    return {
 
-export default Reader
+    }
+})(Reader)

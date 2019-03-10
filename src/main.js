@@ -13,7 +13,7 @@ app.use(cors());
 app.get('/', (req, res)=>{
     return res.json({status: "OK"})
 })
-app.get('/readFile/:fileName', uploader.readFile)
+app.get('/read/:fileName', uploader.readFile)
 app.post('/upload', upload.single('file'), (req, res)=>{
     return res.send({
         fileName: req.file.originalname,
@@ -25,4 +25,5 @@ app.get('/token', (req, res)=>{
         return res.send(token); 
     })
 })
-app.listen(8080);
+app.listen(5000);
+console.log('Listening!')

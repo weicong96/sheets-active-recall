@@ -1,5 +1,6 @@
 FROM node:8
 ADD . /code
 WORKDIR /code
+RUN npm install -g nodemon
 RUN npm install
-CMD ["node", "./src/main.js"]
+CMD ["nodemon", "./src/main.js"]

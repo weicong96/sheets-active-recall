@@ -23,12 +23,14 @@ module.exports = {
                 var grouped = _.groupBy(items, 'topic');
                 var modules = Object.keys(grouped).map((key)=>{
                     return {
-                        topic: key
+                        topic: key,
+                        username: req.body.username
                     }
                 });
-                client.collection('topics').insertMany(modules, (err, result)=>{
-                    console.log(result);
-                })
+                /*
+                client.collection('notes').update({
+                    
+                })*/
                 /*
                 client.collection('notes').insertOne({
                     file: fileName,

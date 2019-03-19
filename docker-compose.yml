@@ -8,3 +8,11 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
     ports:
       - "27017:27017"
+  api:
+    build: .
+    ports:
+      - "5000:5000"
+  web:
+    build: ./client
+    ports:
+      - "8080:8080"
